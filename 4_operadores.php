@@ -14,15 +14,17 @@
     $z = 5;
     $suma = $x + $y;
     $resta = $x - $z;
-    echo "la suma es". $suma ;
+    echo "la suma es" . $suma ;
     ?>
+    
     <h2>Comparación</h2>
     <?php
     $x = 9;
     $y = 3;
     echo ($x == $y);
     ?>
-    <h2>Comparación</h2>
+
+    <h2>logicos</h2>
     <?php
     $x = 9;
     $y = 3;
