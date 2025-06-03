@@ -6,144 +6,138 @@
     <title>Funciones para manipular cadenas</title>
 </head>
 <body>
-    <h1>funciones para manipular cadenas</h1>
+    <h1>Funciones para manipular cadenas</h1>
+
     <h2>función substr()</h2>
-    <p>La función <code>substr()</code> se utiliza para extraer una parte de una cadena (subcadena). Permite especificar la posición de inicio y, opcionalmente, la longitud de la subcadena a extraer.</p>
+    <p>La función <code>substr()</code> se usa para sacar una parte de una cadena. Le dices desde dónde empezar y cuántos caracteres quieres.</p>
     <?php
-$cadena = "Hola Mundo Programación";
+$saludo = "Hola a todos";
 
-// Obtener una subcadena desde la posición 5 con longitud 5
-$subcadena1 = substr($cadena, 5, 5); // Resultado: "Mundo"
+// Sacar "Hola" (desde la posición 0, 4 caracteres)
+$parte1 = substr($saludo, 0, 4);
 echo "Ejemplo substr():\n";
-echo "Cadena original: \"$cadena\"\n";
-echo "Subcadena (desde la posición 5, longitud 5): \"$subcadena1\"\n";
+echo "Cadena original: \"$saludo\"\n";
+echo "Parte 1 (los primeros 4 caracteres): \"$parte1\"\n"; // Salida: "Hola"
 
-// Obtener una subcadena desde la posición 11 hasta el final
-$subcadena2 = substr($cadena, 11); // Resultado: "Programación"
-echo "Subcadena (desde la posición 11 hasta el final): \"$subcadena2\"\n";
-
-// Obtener una subcadena usando una posición negativa (cuenta desde el final)
-$subcadena3 = substr($cadena, -13, 12); // Resultado: "Programación"
-echo "Subcadena (desde la posición -13, longitud 12): \"$subcadena3\"\n";
+// Sacar "todos" (desde la posición 8 hasta el final)
+$parte2 = substr($saludo, 8);
+echo "Parte 2 (desde el carácter 8 hasta el final): \"$parte2\"\n"; // Salida: "todos"
 echo "\n";
 ?>
+
     <h2>función ord()</h2>
-    <p>La función <code>ord()</code> devuelve el valor ASCII (o el valor del punto de código Unicode) del primer carácter de una cadena. Es útil para trabajar con la representación numérica de los caracteres.</p>
+    <p>La función <code>ord()</code> te da el número que representa al primer carácter de una cadena. Cada letra o símbolo tiene un número asignado.</p>
     <?php
-$caracter1 = 'A';
-$caracter2 = 'a';
-$caracter3 = '€'; // Un carácter Unicode
+$letra1 = 'X';
+$letra2 = 'c';
+$numero_caracter = '5';
 
 echo "Ejemplo ord():\n";
-echo "Valor ASCII de '$caracter1': " . ord($caracter1) . "\n"; // Resultado: 65
-echo "Valor ASCII de '$caracter2': " . ord($caracter2) . "\n"; // Resultado: 97
-echo "Valor Unicode de '$caracter3': " . ord($caracter3) . "\n"; // Resultado: 8364 (para UTF-8)
+echo "El número de la letra '$letra1' es: " . ord($letra1) . "\n"; // Salida: 88
+echo "El número de la letra '$letra2' es: " . ord($letra2) . "\n"; // Salida: 99
+echo "El número del carácter '$numero_caracter' es: " . ord($numero_caracter) . "\n"; // Salida: 53
 echo "\n";
 ?>
+
     <h2>función printf()</h2>
-    <p>La función <code>printf()</code> imprime una cadena formateada directamente en la salida. Permite controlar el formato de variables (enteros, flotantes, cadenas) usando especificadores de formato.</p>
+    <p>La función <code>printf()</code> imprime texto con un formato especial. Puedes insertar valores (números, texto) en lugares específicos de tu frase.</p>
     <?php
-$nombre = "Juan";
-$edad = 30;
-$altura = 1.75;
-$saldo = 1234.567;
+$nombre_persona = "María";
+$edad_persona = 28;
+$precio_producto = 150.75;
 
 echo "Ejemplo printf():\n";
-printf("Mi nombre es %s y tengo %d años.\n", $nombre, $edad); // Resultado: Mi nombre es Juan y tengo 30 años.
-printf("Mi altura es %.2f metros.\n", $altura); // Resultado: Mi altura es 1.75 metros. (2 decimales)
-
-// Corrección: Se utiliza number_format() para formatear el saldo y evitar el error del especificador %'f
-// que puede no ser soportado por todas las configuraciones de PHP.
-$saldo_formateado = number_format($saldo, 2, '.', ','); // 2 decimales, '.' como separador decimal, ',' como separador de miles
-printf("Saldo actual (formateado con number_format): %s\n", $saldo_formateado);
-
-printf("Saldo actual (con 2 decimales): %0.2f\n", $saldo); // Resultado: Saldo actual: 1234.57 (2 decimales con padding si aplica)
+printf("La persona se llama %s y tiene %d años.\n", $nombre_persona, $edad_persona); // %s para texto, %d para número entero
+printf("El producto cuesta %.2f pesos.\n", $precio_producto); // %.2f para número con 2 decimales
 echo "\n";
 ?>
+
     <h2>función sprintf()</h2>
-    <p>La función <code>sprintf()</code> es similar a <code>printf()</code>, pero en lugar de imprimir, devuelve la cadena formateada como un string. Esto es útil cuando necesitas almacenar la cadena formateada en una variable para uso posterior.</p>
+    <p>La función <code>sprintf()</code> es como <code>printf()</code>, pero en lugar de imprimir el texto, lo guarda en una variable para que lo uses después.</p>
     <?php
-$producto = "Laptop";
-$precio = 999.99;
-$cantidad = 2;
+$ciudad = "Bogotá";
+$temperatura = 20;
 
 echo "Ejemplo sprintf():\n";
-$mensaje_compra = sprintf("Has comprado %d unidades de %s por un total de $%.2f.\n", $cantidad, $producto, $precio * $cantidad);
-echo $mensaje_compra; // Resultado: Has comprado 2 unidades de Laptop por un total de $1999.98.
-
-$datos_usuario = sprintf("Usuario: %s, Edad: %d", "Ana", 25);
-echo $datos_usuario . "\n"; // Resultado: Usuario: Ana, Edad: 25
+$mensaje_clima = sprintf("Hoy en %s la temperatura es de %d grados Celsius.", $ciudad, $temperatura);
+echo $mensaje_clima . "\n"; // Imprimimos la variable que ahora contiene el mensaje formateado
 echo "\n";
 ?>
+
     <h2>función strtolower()</h2>
-    <p>La función <code>strtolower()</code> convierte todos los caracteres alfabéticos de una cadena a minúsculas, lo que es útil para normalizar texto o realizar comparaciones insensibles a mayúsculas y minúsculas.</p>
+    <p>La función <code>strtolower()</code> convierte todas las letras de una cadena a minúsculas.</p>
     <?php
-$cadenaOriginal = "HoLa MuNdO PyThOn";
+$texto_mayusculas = "ESTE ES UN TEXTO EN MAYÚSCULAS";
 
 echo "Ejemplo strtolower():\n";
-$cadenaMinusc = strtolower($cadenaOriginal);
-echo "Cadena original: \"$cadenaOriginal\"\n";
-echo "Cadena en minúsculas: \"$cadenaMinusc\"\n"; // Resultado: "hola mundo python"
+$texto_minusculas = strtolower($texto_mayusculas);
+echo "Original: \"$texto_mayusculas\"\n";
+echo "En minúsculas: \"$texto_minusculas\"\n"; // Salida: "este es un texto en mayúsculas"
 echo "\n";
 ?>
+
     <h2>función strtoupper()</h2>
-    <p>La función <code>strtoupper()</code> convierte todos los caracteres alfabéticos de una cadena a mayúsculas, lo que puede ser útil para resaltar texto o para formatos específicos.</p>
+    <p>La función <code>strtoupper()</code> convierte todas las letras de una cadena a mayúsculas.</p>
     <?php
-$cadenaOriginal = "eJeMpLo De TeXtO";
+$texto_minusculas_original = "este es un texto en minúsculas";
 
 echo "Ejemplo strtoupper():\n";
-$cadenaMayusc = strtoupper($cadenaOriginal);
-echo "Cadena original: \"$cadenaOriginal\"\n";
-echo "Cadena en mayúsculas: \"$cadenaMayusc\"\n"; // Resultado: "EJEMPLO DE TEXTO"
+$texto_mayusculas_convertido = strtoupper($texto_minusculas_original);
+echo "Original: \"$texto_minusculas_original\"\n";
+echo "En mayúsculas: \"$texto_mayusculas_convertido\"\n"; // Salida: "ESTE ES UN TEXTO EN MINÚSCULAS"
 echo "\n";
 ?>
+
     <h2>función preg_match()</h2>
-    <p>La función <code>preg_match()</code> realiza una búsqueda de una expresión regular compatible con Perl (PCRE) en una cadena. Es la alternativa moderna y recomendada a la obsoleta función <code>ereg()</code>. Devuelve 1 si se encuentra una coincidencia y 0 si no, y puede capturar subcadenas coincidentes.</p>
+    <p>La función <code>preg_match()</code> busca un patrón específico dentro de una cadena. Es la forma moderna y recomendada de buscar texto usando "expresiones regulares" (que son como reglas de búsqueda avanzadas). Si encuentra el patrón, te dice que sí y puede sacar la parte que encontró.</p>
     <?php
-// Ejemplo de preg_match()
-$cadena = "El número de teléfono es 123-456-7890.";
-$patron = "/([0-9]{3})-([0-9]{3})-([0-9]{4})/"; // Patrón para buscar un número de teléfono
+$frase = "El carro es rojo.";
+$patron_buscar = "/carro/"; // Buscamos la palabra "carro"
 
 echo "Ejemplo preg_match():\n";
-if (preg_match($patron, $cadena, $matches)) {
-    echo "Se encontró un número de teléfono: " . $matches[0] . "\n";
-    echo "Prefijo: " . $matches[1] . "\n";
-    echo "Medio: " . $matches[2] . "\n";
-    echo "Sufijo: " . $matches[3] . "\n";
+if (preg_match($patron_buscar, $frase)) {
+    echo "¡Sí! La palabra 'carro' se encontró en la frase.\n";
 } else {
-    echo "No se encontró ningún número de teléfono.\n";
+    echo "No se encontró la palabra 'carro'.\n";
+}
+
+$frase_numero = "Mi número favorito es el 7.";
+$patron_digito = "/[0-9]/"; // Buscamos cualquier dígito (número del 0 al 9)
+
+if (preg_match($patron_digito, $frase_numero, $coincidencia)) {
+    echo "Se encontró un dígito: " . $coincidencia[0] . "\n"; // Salida: "7"
+} else {
+    echo "No se encontró ningún dígito.\n";
 }
 echo "\n";
 ?>
+
     <h2>función preg_match_all()</h2>
-    <p>La función <code>preg_match_all()</code> realiza una búsqueda global de todas las coincidencias de una expresión regular en una cadena. Es útil cuando necesitas encontrar múltiples ocurrencias de un patrón, a diferencia de <code>preg_match()</code> que solo encuentra la primera. Esta función reemplaza el uso de la obsoleta <code>eregi()</code> para búsquedas globales (especialmente si se combinaba con bucles) y permite búsquedas insensibles a mayúsculas/minúsculas usando la bandera <code>i</code>.</p>
+    <p>La función <code>preg_match_all()</code> es como <code>preg_match()</code>, pero busca **todas** las veces que aparece un patrón en una cadena, no solo la primera. Es muy útil cuando necesitas encontrar todas las ocurrencias de algo. Puedes usar la letra 'i' al final del patrón (por ejemplo, <code>/palabra/i</code>) para que no le importe si son mayúsculas o minúsculas.</p>
     <?php
-// Ejemplo de preg_match_all()
-$cadena_multiple = "Mi correo es user1@example.com y el de mi amigo es user2@domain.net. También tengo info@test.org.";
-$patron_correo = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/"; // Patrón para buscar correos electrónicos
+$texto_colores = "El color rojo, el color azul y el color ROJO son bonitos.";
+$patron_color = "/rojo/i"; // Buscamos "rojo" sin importar mayúsculas/minúsculas
 
 echo "Ejemplo preg_match_all():\n";
-if (preg_match_all($patron_correo, $cadena_multiple, $matches_all)) {
-    echo "Se encontraron los siguientes correos electrónicos:\n";
-    foreach ($matches_all[0] as $correo) {
-        echo "- " . $correo . "\n";
+if (preg_match_all($patron_color, $texto_colores, $todas_coincidencias)) {
+    echo "Se encontraron las siguientes veces la palabra 'rojo':\n";
+    foreach ($todas_coincidencias[0] as $color_encontrado) {
+        echo "- " . $color_encontrado . "\n"; // Salida: "- rojo", "- ROJO"
     }
 } else {
-    echo "No se encontraron correos electrónicos.\n";
+    echo "No se encontró la palabra 'rojo'.\n";
 }
 
-// Ejemplo de preg_match_all() con bandera 'i' (insensible a mayúsculas/minúsculas)
-$cadena_case_insensitive = "PHP es genial. php es un lenguaje popular. PHP es muy usado.";
-$patron_php = "/php/i"; // Patrón para buscar "php" ignorando mayúsculas/minúsculas
+$lista_frutas = "Manzana, Pera, Manzana, Uva, Manzana.";
+$patron_fruta = "/Manzana/";
 
-echo "\nEjemplo preg_match_all() con bandera 'i':\n";
-if (preg_match_all($patron_php, $cadena_case_insensitive, $matches_case_insensitive)) {
-    echo "Se encontraron las siguientes ocurrencias de 'php' (ignorando mayúsculas/minúsculas):\n";
-    foreach ($matches_case_insensitive[0] as $match) {
-        echo "- " . $match . "\n";
+if (preg_match_all($patron_fruta, $lista_frutas, $frutas_encontradas)) {
+    echo "\nSe encontraron las siguientes manzanas:\n";
+    foreach ($frutas_encontradas[0] as $fruta) {
+        echo "- " . $fruta . "\n"; // Salida: "- Manzana", "- Manzana", "- Manzana"
     }
 } else {
-    echo "No se encontraron ocurrencias de 'php'.\n";
+    echo "No se encontraron manzanas.\n";
 }
 echo "\n";
 ?>
